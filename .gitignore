@@ -221,3 +221,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados locais e arquivos gerados pelo Olist Analytics
+/*.csv
+/data/**
+!/data/**/
+!/data/**/.gitkeep
+*.parquet
+*.duckdb
+*.duckdb.wal
+/.tools/
