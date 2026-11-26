@@ -8,7 +8,7 @@ A fonte é o [Brazilian E-Commerce Public Dataset by Olist, no Kaggle](https://w
 
 | Ferramenta | Uso no projeto |
 | --- | --- |
-| Python 3.11+, Pandas e JupyterLab | Leitura, exploração e verificações de qualidade |
+| Python 3.11+, Pandas, JupyterLab e Matplotlib | Leitura, exploração, visualizações e verificações de qualidade |
 | DuckDB e SQL | Consultas analíticas locais |
 | PyArrow e Parquet | Armazenamento local das saídas preparadas |
 | Power BI Desktop e DAX | Modelo analítico, indicadores e dashboard |
@@ -33,6 +33,7 @@ olist-analytics/
 │   ├── interim/
 │   └── processed/
 ├── notebooks/
+│   └── 01_data_profiling.ipynb
 ├── src/
 │   ├── ingestion/
 │   │   └── read_raw_headers.py
@@ -45,9 +46,13 @@ olist-analytics/
 │   ├── README.md
 │   └── test_check_raw_files.py
 ├── docs/
+│   ├── data_dictionary.md
+│   ├── source_relationships.md
 │   └── figma/
 ├── powerbi/
 ├── reports/
+│   ├── data_quality_report.md
+│   └── eda_findings.md
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -84,3 +89,20 @@ Baixe e extraia os nove arquivos CSV do [Kaggle](https://www.kaggle.com/datasets
 O primeiro comando lista os arquivos encontrados e ausentes. O segundo usa Pandas para ler somente os cabeçalhos e lista as colunas de cada CSV. Ambos retornam código 0 em caso de sucesso e 1 se a verificação falhar. No PowerShell, consulte `$LASTEXITCODE` logo após o comando para ver o código retornado.
 
 Os comandos apenas leem os arquivos de origem. O [guia de testes](tests/README.md) explica como executar e ampliar os testes automatizados.
+
+## Exploração e qualidade — Etapa 2
+
+Para abrir e reexecutar o notebook no JupyterLab, instale as dependências atualizadas e execute na raiz do projeto.
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m jupyterlab
+```
+
+Abra `notebooks/01_data_profiling.ipynb` e execute todas as células com os CSVs em `data/raw/`. O notebook apresenta tabelas e gráficos agregados.
+
+- [Notebook de exploração](notebooks/01_data_profiling.ipynb)
+- [Dicionário de dados](docs/data_dictionary.md)
+- [Relacionamentos e granularidade](docs/source_relationships.md)
+- [Relatório de qualidade](reports/data_quality_report.md)
+- [Descobertas e perguntas de negócio](reports/eda_findings.md)
